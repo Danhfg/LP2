@@ -154,19 +154,20 @@ public class Game
         String direction = command.getSecondWord();
 
         // Try to leave current room.
-        Room nextRoom = null;
+        Room nextRoom = currentRoom.getExit(direction);
+/*
         if(direction.equals("north")) {
-            nextRoom = currentRoom.northExit;
+            nextRoom = currentRoom.getExit("north");
         }
         if(direction.equals("east")) {
-            nextRoom = currentRoom.eastExit;
+            nextRoom = currentRoom.getExit("east");
         }
         if(direction.equals("south")) {
-            nextRoom = currentRoom.southExit;
+            nextRoom = currentRoom.getExit("south");
         }
         if(direction.equals("west")) {
-            nextRoom = currentRoom.westExit;
-        }
+            nextRoom = currentRoom.getExit("west");
+        }*/
 
         if (nextRoom == null) {
             System.out.println("There is no door!");
@@ -205,5 +206,19 @@ public class Game
         else {
             return true;  // signal that we want to quit
         }
+    }
+
+    /**
+     * Print out the locations for the player.
+     */
+    private void printLocation()
+    {
+        System.out.println("You are "+
+            currentRoom.getDescription());
+        System.out.println("Exits: ");
+        if(currentRoom.northExit != null){
+            System.out.println("");
+        }
+        System.out.println();
     }
 }
