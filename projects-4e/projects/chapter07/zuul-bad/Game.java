@@ -176,6 +176,7 @@ public class Game
             currentRoom = nextRoom;
             System.out.println("You are " + currentRoom.getDescription());
             System.out.print("Exits: ");
+            System.out.ptint(direction);/*
             if(currentRoom.northExit != null) {
                 System.out.print("north ");
             }
@@ -187,8 +188,8 @@ public class Game
             }
             if(currentRoom.westExit != null) {
                 System.out.print("west ");
-            }
-            System.out.println();
+            }*/
+            System.out.println(" ");
         }
     }
 
@@ -218,6 +219,25 @@ public class Game
         System.out.println("Exits: ");
         if(currentRoom.northExit != null){
             System.out.println("");
+        }
+        System.out.println();
+    }
+    private void printLocationInfo()
+    {
+        System.out.println("You are "+
+            currentRoom.getDescription());
+        System.out.println("Exits: ");
+        if(currentRoom.northExit != null){
+            System.out.println("north");
+        }
+        if(currentRoom.eastExit != null){
+            System.out.println("east");
+        }
+        if(currentRoom.southExit != null){
+            System.out.println("south");
+        }
+        if(currentRoom.westExit != null){
+            System.out.println("west");
         }
         System.out.println();
     }
