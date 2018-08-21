@@ -15,11 +15,13 @@
 public class Room 
 {
     private String description;
+    private HashMap<String, Room> exits;
+/*
     private Room northExit;
     private Room southExit;
     private Room eastExit;
     private Room westExit;
-
+*/
     /**
      * Create a room described "description". Initially, it has
      * no exits. "description" is something like "a kitchen" or
@@ -29,6 +31,14 @@ public class Room
     public Room(String description) 
     {
         this.description = description;
+        exits = new Hash<String, Room>();
+    }
+
+
+
+    public void setExits(Room north, Room east, Room south, Room west) 
+    {
+        exits.put
     }
 
     /**
@@ -42,13 +52,22 @@ public class Room
     public void setExits(Room north, Room east, Room south, Room west) 
     {
         if(north != null)
+            exits.put("north", north);
+        if(east != null)
+            exits.put("east", east);
+        if(south != null)
+            exits.put("south", south);
+        if(west != null)
+            exits.put("west", west);
+/*
+        if(north != null)
             northExit = north;
         if(east != null)
             eastExit = east;
         if(south != null)
             southExit = south;
         if(west != null)
-            westExit = west;
+            westExit = west;*/
     }
    
     /**
@@ -58,6 +77,8 @@ public class Room
       */
     public Room getExits(String direction) 
     {
+        return exits.get(direction);
+/*
         if(direction.equals("north"))
             return northExit;
         if(direction.equals("east"))
@@ -66,7 +87,7 @@ public class Room
             return southExit;
         if(direction.equals("west"))
             return westExit;
-        return null;
+        return null;*/
     }
 
     /**
@@ -76,5 +97,13 @@ public class Room
     {
         return description;
     }
+
+
+    /**
+     * Retorna uma descrição das saídas da sala,
+     * por exempo, "Exits: north west".
+     * @return Uma descrição das salas disponíveis.
+     */
+    public String getExitString(){return "";}
 
 }
