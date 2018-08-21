@@ -40,7 +40,7 @@ public class HugeInteger{
      *@brief
      *@return
     */
-	public double addHugeIntegers(  )
+	public double addHugeIntegers( HugeInteger  )
 	{
         
 	}
