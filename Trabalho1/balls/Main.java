@@ -3,7 +3,7 @@ public class Main{
         //Canvas c = new Canvas("teste");
         BallDemo bd = new BallDemo();
         bd.drawDemo();
-        bd.bounce();
+        bd.bounce(15);
 
     }
 }

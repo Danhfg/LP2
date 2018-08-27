@@ -1,6 +1,8 @@
 import java.awt.Rectangle;
 import java.awt.Dimension;
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Class BallDemo - provides a demonstration of the
@@ -13,8 +15,8 @@ import java.awt.Color;
 public class BallDemo   
 {
     private Canvas myCanvas;
-    private static final int WIDTH = 600;
-    private static final int HEIGHT = 500;
+    private static final int WIDTH = 500;
+    private static final int HEIGHT = 600;
 
     /**
      * Create a BallDemo object.
@@ -28,12 +30,16 @@ public class BallDemo
  
     /**
      * Simulate two bouncing balls
+     *
+     * @param n number of balls
      */
-    public void bounce()
+    public void bounce( int n )
     {
-        int ground = HEIGHT - 20 - 3;   // position of the ground line
-        int xStart = 20 + 3;    // x-start of the ground line
-        int xLimit = WIDTH - 20 - 3;   // x-limit of the ground line
+        Dimension size = myCanvas.getSize();
+
+        int ground = size.height - 20 - 10;   // position of the ground line
+        int xStart = 20;    // x-start of the ground line
+        int xLimit = size.width - 20;   // x-limit of the ground line
 
         myCanvas.setVisible(true);
 
@@ -41,6 +47,42 @@ public class BallDemo
         myCanvas.setForegroundColor(Color.blue);
         myCanvas.drawLine(xStart, ground, xLimit, ground);
 
+        ArrayList<BouncingBall> arrayBalls = new ArrayList<BouncingBall>();
+        int diameters[] = new int[n]; 
+
+        if ( n <= 0 ) {
+            n = 1;
+        }
+        
+        Random gerador = new Random();
+
+        for (int i = 0; i < n; i++ ) {
+            int yAleat = ( gerador.nextInt (size.height - (size.height/2) ) + 20 );
+            int xAleat = ( gerador.nextInt (size.width - (size.width/2) ) + 20 );
+            int dimAleat = ( gerador.nextInt ( 10 ) + 10);
+            Color colorAleat = new Color(gerador.nextInt(256), gerador.nextInt(256), gerador.nextInt(256));
+            arrayBalls.add( new BouncingBall(xAleat, yAleat, dimAleat, colorAleat, ground, myCanvas) );
+            diameters[i] = ( dimAleat );
+        }
+
+        boolean finished =  false;
+        while(!finished) {
+            myCanvas.wait(50);
+            boolean finishedAux = true;
+            for (int i = 0; i < n; i++ ) {
+                finishedAux = finishedAux && (arrayBalls.get(i).getXPosition() >= xLimit-diameters[i] - 1);
+                if (arrayBalls.get(i).getXPosition() >= xLimit-diameters[i] - 1) {
+                    arrayBalls.get(i).draw();
+                }
+                else
+                    arrayBalls.get(i).move();
+            }
+            finished = finishedAux;
+        }
+        for (int i = 0; i < n; i++ ) {
+            arrayBalls.get(i).erase();
+        }
+/*
         // crate and show the balls
         BouncingBall ball = new BouncingBall(xStart, 50, 16, Color.blue, ground, myCanvas);
         ball.draw();
@@ -59,7 +101,7 @@ public class BallDemo
             }
         }
         ball.erase();
-        ball2.erase();
+        ball2.erase();*/
     }
 
     /**
@@ -88,7 +130,7 @@ public class BallDemo
         myCanvas.draw(rect);
 
         // at the end of the move, draw and fill once more so that it remains visible
-        myCanvas.fill(rect);
+        //myCanvas.fill(rect);
     }
 
     
