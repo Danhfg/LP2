@@ -71,6 +71,32 @@ public class Helper
 
     }*/
 
+    public void testGetNextVeicle1(){
+        Shuttle shuttle1 = (Shuttle) taxiCo1.lookup("Shuttle #3");
+        System.out.println(shuttle1.getDestination());
+        Vehicle vel = taxiCo1.getNextVeicle(shuttle1.getDestination());
+        if (vel instanceof Shuttle) {
+            System.out.println("Funcionou");
+        }
+
+    }
+
+    public void testGetNextVeicle2(){
+        Vehicle vel = taxiCo1.getNextVeicle("Qualquer lugar");
+        if ( !(vel instanceof Shuttle) ) {
+            System.out.println("Funcionou");
+        }
+
+    }
+
+    public void testGetNextVeicle3(){
+        taxiCo1.addTaxi();
+        Vehicle vel = taxiCo1.getNextVeicle("Qualquer lugar2");
+        if ( vel instanceof Taxi ) {
+            System.out.println("Funcionou");
+        }
+    }
+
 	public static void main(String[] args) {
 		Helper helper = new Helper();
 
@@ -81,6 +107,15 @@ public class Helper
 		
 		System.out.println("Segundo teste");
 		helper.testArrived();
+
+        System.out.println("Terceiro teste");
+        helper.testGetNextVeicle1();
+
+        System.out.println("Quarto teste");
+        helper.testGetNextVeicle2();
+
+        System.out.println("Quinto teste");
+        helper.testGetNextVeicle3();
 	}
 }
 

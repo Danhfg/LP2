@@ -139,4 +139,34 @@ public class TaxiCo
         destinations.add("Sainsbury's");
         destinations.add("Darwin");
     }
+
+
+    public Vehicle getNextVeicle(String destination)
+    {
+        ArrayList<Shuttle> shuttleFleet = new ArrayList<Shuttle>();
+        ArrayList<Taxi> taxiFleet = new ArrayList<Taxi>();
+
+        if (vehiclesFleet.size() == 0) {
+            return null;
+        }
+        for (Vehicle v: vehiclesFleet) {
+            if (v instanceof Shuttle) {
+                shuttleFleet.add((Shuttle)v);
+            }
+            else if (v instanceof Taxi){
+                taxiFleet.add((Taxi)v);
+            }
+        }
+        for (Shuttle s: shuttleFleet) {
+            if (s.getDestination() == destination) {
+                return s;
+            }
+        }
+        for (Taxi t: taxiFleet) {
+            if (t.getDestination() == null) {
+                return t;
+            }
+        }
+        return null;
+    }
 }
