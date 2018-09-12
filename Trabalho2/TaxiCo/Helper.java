@@ -2,8 +2,8 @@
  * The test class Helper.
  * Provides the beginning of a set of tests for program development.
  *
- * @author  (your name)
- * @version (a version number or a date)
+ * @author  (Daniel Henrique Ferreira Gomes)
+ * @version 2018.09.11
  */
 public class Helper 
 {
@@ -71,6 +71,9 @@ public class Helper
 
     }*/
 
+    /**
+     * Test for getNextVeicle when the destination is "Shuttle #3".
+     */
     public void testGetNextVeicle1(){
         Shuttle shuttle1 = (Shuttle) taxiCo1.lookup("Shuttle #3");
         System.out.println(shuttle1.getDestination());
@@ -81,6 +84,9 @@ public class Helper
 
     }
 
+    /**
+     * Test for getNextVeicle when the destination is "Qualquer lugar".
+     */
     public void testGetNextVeicle2(){
         Vehicle vel = taxiCo1.getNextVeicle("Qualquer lugar");
         if ( !(vel instanceof Shuttle) ) {
@@ -89,6 +95,9 @@ public class Helper
 
     }
 
+    /**
+     * Test for getNextVeicle when the destination is "Qualquer lugar2".
+     */
     public void testGetNextVeicle3(){
         taxiCo1.addTaxi();
         Vehicle vel = taxiCo1.getNextVeicle("Qualquer lugar2");

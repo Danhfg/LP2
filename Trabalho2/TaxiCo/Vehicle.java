@@ -61,11 +61,14 @@ public class Vehicle
     }    
 
     /**
-     * Return the status of this taxi.
+     * Return the status of this vehicle.
      * @return The status.
      */
     public String getStatus()
     {
+        if (destination == null) {
+            return getID() + " at " + getLocation() + " without destination!";
+        }
         return getID() + " at " + getLocation() + " headed for " +
                getDestination();
     }

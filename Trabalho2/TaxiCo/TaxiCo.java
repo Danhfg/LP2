@@ -83,9 +83,9 @@ public class TaxiCo
     }
     
     /**
-     * Return the taxi with the given id.
-     * @param id The id of the taxi to be returned.
-     * @return The matching taxi, or null if no match is found.
+     * Return the Vehicle with the given id.
+     * @param id The id of the Vehicle to be returned.
+     * @return The matching Vehicle, or null if no match is found.
      */
     public Vehicle lookup(String id)
     {
@@ -109,7 +109,7 @@ public class TaxiCo
     }
 
     /**
-     * Show the status of the fleet of taxis and shuttles. 
+     * Show the status of the fleet of Vehicles. 
      */
     public void showStatus()
     {
@@ -141,6 +141,10 @@ public class TaxiCo
     }
 
 
+    /**
+     * Get the best vehicle to go to the destination.
+     * @param destination The destination to go
+     */
     public Vehicle getNextVeicle(String destination)
     {
         ArrayList<Shuttle> shuttleFleet = new ArrayList<Shuttle>();
